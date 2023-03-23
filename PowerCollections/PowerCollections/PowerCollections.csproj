@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>false</Deterministic>
+		<PackageId>MaximSergeev.PowerCollections</PackageId>
+		<VersionPrefix>0.0.2</VersionPrefix>
+		<VersionSuffix>beta</VersionSuffix>
+		<RepositoryUrl>https://github.com/MaximSergeev/DevTools_lab02</RepositoryUrl>
+		<Title>Wintellect.PowerCollections</Title>
+		<Description>The Power Collections group of collection classes.</Description>
+		<Copyright>Copyright (c) 2004-2007, Wintellect</Copyright>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+
+</Project>
