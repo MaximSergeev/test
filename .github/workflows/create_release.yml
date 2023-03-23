@@ -1,0 +1,33 @@
+name: Create Release And Nuget
+
+on: workflow_dispatch
+
+jobs: 
+  build-package-and-create-release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3.0.3
+        
+      - name: Build package
+        run: dotnet pack PowerCollections -c Release
+        
+      - name: Publish package
+        run: dotnet nuget push 'PowerCollections\PowerCollections\bin\Release\*PowerCollections*.nupkg' --api-key ${{ secrets.MY_TOKEN }} --source https://nuget.pkg.github.com/MaximSergeev/index.json --skip-duplicate
+        
+      - name: Get version
+        id: getVersion
+        uses: mavrosxristoforos/get-xml-info@1.0
+        with:
+          xml-file: 'PowerCollections/PowerCollections/PowerCollections.csproj'
+          xPath: '//VersionPrefix'
+          
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'PowerCollections\PowerCollections\bin\Release\*PowerCollections*.nupkg'
+          tag: v${{ steps.getVersion.outputs.info }}
+          token: ${{ secrets.MY_TOKEN }}
+  
